@@ -5,7 +5,6 @@ export const LoaderContainer = styled('div')(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   height: '100vh',
-  marginLeft: '45%',
 }));
 
 export const Spinner = styled('div')(() => ({

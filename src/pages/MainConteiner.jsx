@@ -18,7 +18,7 @@ export default function MainContainer() {
       const response = await quizes.get();
       setQuizeList(response);
     } catch (err) {
-      setError(err.message); 
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -28,12 +28,13 @@ export default function MainContainer() {
     fetchQuizeList();
   }, [fetchQuizeList]);
 
+  if (loading) return <Loader />;
+  if (error) return <p>{error}</p>;
+
   return (
     <React.Fragment>
       <CssBaseline />
       <Container style={{ display: "flex", flexWrap: "wrap" }} maxWidth="lg">
-        {loading && <Loader />}
-        {error && <p>{error}</p>}
         {quizeList.map((quizes) => (
           <QuizeCard key={quizes.id} quizes={quizes} />
         ))}

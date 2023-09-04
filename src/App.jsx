@@ -4,11 +4,6 @@ import './App.css';
 import MainConteiner from './pages/MainConteiner';
 import Footer from './components/Footer';
 
-
-
-
-
-
 function App() {
   return (
     <div >

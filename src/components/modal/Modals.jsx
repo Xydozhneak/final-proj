@@ -4,12 +4,11 @@ import { ModalWrap, Box } from './modalStyles';
 import Button from '@mui/material/Button';
 
 export default function InfoModal({ content, onClose }) {
-  const rootRef = React.useRef(null);
 
   return (
     <ModalWrap>
       <Box>
-        <img src={content.img} style={{ width: 300, borderRadius: 20 }} />
+        <img src={content.img} style={{ width: 320, borderRadius: 20 }} alt='NarutoImg'/>
 
         <Typography id="server-modal-title" variant="h6" component="h2">
           {content.title}

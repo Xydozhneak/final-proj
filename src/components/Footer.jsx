@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container, FooterText, FooterWrapper } from './footerStyle';
 
-
+const curentYear = new Date().getFullYear();
 function Footer() {
   return (
     <FooterWrapper>
       <Container>
-        <FooterText>&copy; {new Date().getFullYear()} NARUTO QUIZE</FooterText>
+        <FooterText>&copy; {curentYear} NARUTO QUIZE</FooterText>
       </Container>
     </FooterWrapper>
   );

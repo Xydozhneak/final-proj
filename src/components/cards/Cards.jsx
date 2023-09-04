@@ -9,6 +9,7 @@ import InfoModal from '../modal/Modals';
 
 export default function QuizeCard({ quizes }) {
   const [isShowModal, setShowModal] = useState(false);
+  const quizeDescription = quizes.description.substring(0, 100);
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -30,7 +31,7 @@ export default function QuizeCard({ quizes }) {
           {quizes.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {`${quizes.description.substring(0, 100)}....`}
+          {`${quizeDescription}....`}
         </Typography>
       </CardContent>
       <CardActions>

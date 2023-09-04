@@ -11,11 +11,30 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 
 
 const pages = ['Naruto Quizes', 'Create Quize', 'Other Page1', 'Other Page2'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const navBarLinkStyleMin = {
+  mr: 1,
+  display: { xs: 'flex', md: 'none' },
+  flexGrow: 1,
+  fontFamily: 'monospace',
+  fontWeight: 500,
+  letterSpacing: '.3rem',
+  color: 'inherit',
+  textDecoration: 'none',
+};
+const navBarLinkStyleMax = {
+  mr: 2,
+  display: { xs: 'none', md: 'flex' },
+  fontFamily: 'monospace',
+  fontWeight: 700,
+  letterSpacing: '.3rem',
+  color: 'inherit',
+  textDecoration: 'none',
+}
+
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -45,15 +64,7 @@ function NavBar() {
             noWrap
             component="a"
             href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+            sx={navBarLinkStyleMax}
           >
            NARUTO QUIZE 
           </Typography>
@@ -100,16 +111,7 @@ function NavBar() {
             noWrap
             component="a"
             href="/"
-            sx={{
-              mr: 1,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 500,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+            sx={navBarLinkStyleMin}
           >
              NARUTO QUIZE 
           </Typography>
