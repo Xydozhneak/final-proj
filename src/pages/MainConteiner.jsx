@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import QuizeCard from '../components/cards/Cards';
 import { quizes } from '../api/quizes/quizes';
 import Loader from '../components/Loader';
+import CardsClass from '../components/cards/CardsClass';
+
 
 export default function MainContainer() {
   const [quizeList, setQuizeList] = useState([]);
@@ -36,7 +37,7 @@ export default function MainContainer() {
       <CssBaseline />
       <Container style={{ display: "flex", flexWrap: "wrap" }} maxWidth="lg">
         {quizeList.map((quizes) => (
-          <QuizeCard key={quizes.id} quizes={quizes} />
+          <CardsClass key={quizes.id} quizes={quizes} />
         ))}
       </Container>
     </React.Fragment>
