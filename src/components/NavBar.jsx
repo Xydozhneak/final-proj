@@ -150,7 +150,7 @@ function NavBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() =>{handleCloseUserMenu();alert("stopppp")}}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
