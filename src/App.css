@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 @keyframes spin {
     0% {
       transform: rotate(0deg);
@@ -8,4 +7,4 @@
       transform: rotate(360deg);
     }
   }
->>>>>>> b24dd8e9a70671fcc1ffddc846c1747f0953e3cb
+
