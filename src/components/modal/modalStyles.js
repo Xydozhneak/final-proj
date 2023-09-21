@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalWrap = styled('div')(() => ({
   position: 'fixed',
@@ -20,7 +20,3 @@ export const Box = styled('div')(() => ({
   padding: '20px',
   borderRadius: '20px',
 }));
-
-
-
-

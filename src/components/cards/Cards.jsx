@@ -7,17 +7,18 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import InfoModal from '../modal/Modals';
 
-export default function QuizeCard({ quizes }) {
+export default function QuizeCard({ quizes, handleNavigate }) {
   const [isShowModal, setShowModal] = useState(false);
   const quizeDescription = quizes.description.substring(0, 100);
+  const { title } = quizes;
 
   const handleShowModal = () => {
     setShowModal(true);
-  }
+  };
 
   const handleCloseModal = () => {
     setShowModal(false);
-  }
+  };
 
   return (
     <Card sx={{ width: 300, maxWidth: 345, margin: '20px' }} key={quizes.id}>
@@ -36,7 +37,7 @@ export default function QuizeCard({ quizes }) {
       </CardContent>
       <CardActions>
         <Button onClick={handleShowModal} size="lg">More</Button>
-        <Button onClick={() => { alert('Quize Started') }} size="lg">Start</Button>
+        <Button onClick={() => { handleNavigate(title); }} size="lg">Start</Button>
       </CardActions>
       {isShowModal && (
         <InfoModal content={quizes} onClose={handleCloseModal} />

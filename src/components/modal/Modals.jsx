@@ -1,10 +1,9 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import { ModalWrap, Box } from './modalStyles';
 import Button from '@mui/material/Button';
+import { ModalWrap, Box } from './modalStyles';
 
 export default function InfoModal({ content, onClose }) {
-
   return (
     <ModalWrap>
       <Box>
@@ -21,7 +20,10 @@ export default function InfoModal({ content, onClose }) {
           <Button variant="outlined" onClick={onClose}>
             Close
           </Button>
-          <Button sx={{ marginLeft: 5 }} variant="contained" color="primary" onClick={() => { alert('Quize Started') }}>
+          <Button sx={{ marginLeft: 5 }}
+           variant="contained"
+           color="primary"
+           onClick={() => { alert('Quize Started'); }}>
             Start Quize
           </Button>
         </div>
