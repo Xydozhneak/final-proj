@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Box, Button, IconButton, Menu,
+  Box, Button, IconButton, Menu, TextField,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useDispatch, useSelector } from 'react-redux';
+import actions from '../../store/services/quizesCard/actions';
 
 export default function MobileScreen({
   handleToggleSearch,
@@ -12,6 +14,11 @@ export default function MobileScreen({
   handleOpenNavMenu,
   isSearchOpen,
 }) {
+  const { filter } = useSelector((state) => state.quizCardReducer);
+  const dispatch = useDispatch();
+  const handleChangeFilter = (e) => {
+    dispatch(actions.filterAction(e.target.value));
+  };
   return (
     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
       <IconButton
@@ -71,10 +78,13 @@ export default function MobileScreen({
         </Link>
 
         {isSearchOpen ? (
-          <div>
-            <input type="text" placeholder="Search..." />
-            <button onClick={handleToggleSearch}>Close</button>
-          </div>
+           <div>
+           <TextField sx={{ backgroundColor: 'white' }}
+           value={filter}
+           onChange={handleChangeFilter}
+           placeholder="Search..." />
+           <Button sx={{ color: 'white' }} onClick={handleToggleSearch}>Close</Button>
+         </div>
         ) : (
           <Button
             key={4}

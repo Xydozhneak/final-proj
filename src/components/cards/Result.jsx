@@ -4,8 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { useSelector } from 'react-redux';
 
-export default function Result({ score, maximumScore }) {
+export default function Result() {
+  const { score, maximumScore } = useSelector((state) => state.narutoQuizeRuduser);
   return (
          <Card sx={{ maxWidth: '700px' }}>
       <CardActionArea>
