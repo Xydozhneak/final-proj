@@ -1,4 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useState,
+} from 'react';
+import { useParams } from 'react-router-dom';
 import { Container } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import Quizes from '../../components/cards/Quizes/Quizes';
@@ -9,6 +12,7 @@ import thunks from '../../store/services/quizes/thunks';
 import actions from '../../store/services/quizes/actions';
 
 export default function NarutoQuizesPage() {
+  const { quize } = useParams();
   const { quizeList, index, score } = useSelector((state) => state.narutoQuizeRuduser);
   const { lvlType } = useSelector((state) => state.quizCardReducer);
   const dispatch = useDispatch();
@@ -16,12 +20,12 @@ export default function NarutoQuizesPage() {
   const [error, setError] = useState(null);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [timer, setTimer] = useState(lvlType);
-
+  console.log(quize);
   const fetchQuizeList = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      await dispatch(thunks.fetchNarutoQuize());
+      await dispatch(thunks.fetchNarutoQuize(quize));
     } catch (err) {
       setError(err.message);
     } finally {
@@ -33,7 +37,7 @@ export default function NarutoQuizesPage() {
     dispatch(actions.resetScoreAction(0));
     fetchQuizeList();
     dispatch(actions.setMaximumScoreAction(quizeList.length * 10));
-  }, [fetchQuizeList]);
+  }, [fetchQuizeList, quize]);
 
   useEffect(() => {
     const timerInterval = setInterval(() => {

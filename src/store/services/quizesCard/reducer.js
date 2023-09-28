@@ -10,7 +10,6 @@ const initialState = {
   lvlType: 20,
   score: 0,
   maximumScore: null,
-
 };
 
 export const quizCardReducer = createSlice({

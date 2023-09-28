@@ -9,17 +9,17 @@ import store from './store';
 
 function App() {
   return (
-    <Provider store={ store }>
-    <BrowserRouter>
-    <div >
-      <Routes>
-        <Route path='/*' element ={<NotFound />} />
-        <Route element ={<MainContainer />} >
-           <Route path='/narutoQuizes/*' element={<NarutoRouters />}/>
-        </Route>
-       </Routes>
-    </div>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <div>
+          <Routes>
+            <Route path='/*' element={<NotFound />} />
+            <Route element={<MainContainer />}>
+              <Route path='/narutoQuizes/*' element={<NarutoRouters />} />
+            </Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
     </Provider>
   );
 }

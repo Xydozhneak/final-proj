@@ -36,7 +36,7 @@ export default function ContainerQuize() {
   }, [fetchQuizeList]);
   const handleNavigate = (title) => {
     const params = title.toLowerCase().replaceAll(' ', '_');
-    navigate(`/narutoQuizes/quizes/${params}`);
+    navigate(`/narutoQuizes/${params}`);
     dispatch(actions.resetIndexAction(0));
   };
   if (loading) return <Loader />;
@@ -45,7 +45,7 @@ export default function ContainerQuize() {
   return (
     <Container style={{ display: 'flex', flexWrap: 'wrap', minHeight: '100vh' }} maxWidth="lg">
       {quizeList.map((quizes) => (
-        <QuizeCard key={quizes.id} quizes={quizes} handleNavigate={handleNavigate}/>
+        <QuizeCard key={quizes.id} quiz={quizes} handleNavigate={handleNavigate}/>
       ))}
     </Container>
   );
