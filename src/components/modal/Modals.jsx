@@ -23,7 +23,7 @@ export default function InfoModal({ content, onClose }) {
           <Button sx={{ marginLeft: 5 }}
            variant="contained"
            color="primary"
-           onClick={() => { alert('Quize Started'); }}>
+          >
             Start Quize
           </Button>
         </div>
