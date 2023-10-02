@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function FavouriteQuizes() {
+import ContainerQuize from '../components/ContainerQuize';
+
+export default function FavouriteQuize() {
   return (
-        <div>
-            <h3>Favourite</h3>
-        </div>
+    <ContainerQuize />
   );
 }

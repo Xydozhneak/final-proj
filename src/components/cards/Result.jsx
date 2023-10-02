@@ -3,13 +3,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { Button, CardActionArea } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function Result() {
   const { score, maximumScore } = useSelector((state) => state.narutoQuizeRuduser);
   return (
-         <Card sx={{ maxWidth: '700px' }}>
+    <Card sx={{ maxWidth: '700px' }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -19,8 +20,9 @@ export default function Result() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-          Congratulations  your score is {score} / {maximumScore}
+            Congratulations  your score is {score} / {maximumScore}
           </Typography>
+          <Button component={Link} to="/narutoQuizes">Go to Quize Page</Button>
         </CardContent>
       </CardActionArea>
     </Card>

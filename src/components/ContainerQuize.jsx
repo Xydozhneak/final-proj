@@ -2,7 +2,7 @@ import React, {
   useCallback, useEffect, useMemo, useState,
 } from 'react';
 import Container from '@mui/material/Container';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import QuizeCard from './cards/Cards';
 import Loader from './Loader';
@@ -11,12 +11,23 @@ import actions from '../store/services/quizes/actions';
 
 export default function ContainerQuize() {
   const navigate = useNavigate();
-  const { quizes, filtredCard, filter } = useSelector((state) => state.quizCardReducer);
+  const {
+    quizes, filtredCard, filter, favouriteList,
+  } = useSelector((state) => state.quizCardReducer);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const quizeList = useMemo(() => (filter ? filtredCard : quizes), [quizes, filtredCard, filter]);
+  const location = useLocation();
+
+  const isFavouritePage = location.pathname.includes('/narutoQuizes/favourite');
+
+  const quizeList = useMemo(() => {
+    if (isFavouritePage) {
+      return favouriteList;
+    }
+    return filter ? filtredCard : quizes;
+  }, [quizes, filtredCard, filter, favouriteList, isFavouritePage]);
 
   const fetchQuizeList = useCallback(async () => {
     setLoading(true);
@@ -36,7 +47,7 @@ export default function ContainerQuize() {
   }, [fetchQuizeList]);
   const handleNavigate = (title) => {
     const params = title.toLowerCase().replaceAll(' ', '_');
-    navigate(`/narutoQuizes/quizes/${params}`);
+    navigate(`/narutoQuizes/${params}`);
     dispatch(actions.resetIndexAction(0));
   };
   if (loading) return <Loader />;
@@ -45,7 +56,7 @@ export default function ContainerQuize() {
   return (
     <Container style={{ display: 'flex', flexWrap: 'wrap', minHeight: '100vh' }} maxWidth="lg">
       {quizeList.map((quizes) => (
-        <QuizeCard key={quizes.id} quizes={quizes} handleNavigate={handleNavigate}/>
+        <QuizeCard key={quizes.id} quiz={quizes} handleNavigate={handleNavigate}/>
       ))}
     </Container>
   );

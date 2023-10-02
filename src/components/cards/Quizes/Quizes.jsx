@@ -28,9 +28,7 @@ export default function Quizes({
   const isCorrect = selectedAnswer === answer;
 
   const handleNextClick = () => {
-    if (isCorrect) {
-      dispatch(actions.addScoreAction());
-    }
+    if (isCorrect) dispatch(actions.addScoreAction());
     setSelectedAnswer(null);
     onNext();
   };

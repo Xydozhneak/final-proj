@@ -24,12 +24,10 @@ export const narutoQuizeRuduser = createSlice({
       .addCase(actions.addScoreAction, (state) => {
         /* eslint-disable no-param-reassign */
         state.score += 10;
-        console.log(state.score);
       })
       .addCase(actions.devScoreAction, (state) => {
         /* eslint-disable no-param-reassign */
         state.score -= 10;
-        console.log(state.score);
       })
       .addCase(actions.incIndexAction, (state) => {
         /* eslint-disable no-param-reassign */
@@ -46,7 +44,6 @@ export const narutoQuizeRuduser = createSlice({
       .addCase(actions.resetScoreAction, (state, { payload }) => {
         /* eslint-disable no-param-reassign */
         state.score = payload;
-        console.log(state.score);
       })
       .addCase(actions.resetIndexAction, (state, { payload }) => {
         /* eslint-disable no-param-reassign */

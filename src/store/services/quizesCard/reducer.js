@@ -10,7 +10,7 @@ const initialState = {
   lvlType: 20,
   score: 0,
   maximumScore: null,
-
+  favouriteList: [],
 };
 
 export const quizCardReducer = createSlice({
@@ -31,10 +31,23 @@ export const quizCardReducer = createSlice({
       .addCase(thunks.fetchQuize.fulfilled, (state, { payload }) => {
         /* eslint-disable no-param-reassign */
         state.quizes = payload;
+        state.favouriteList = state.quizes.filter((quize) => quize.favourite);
+      })
+      .addCase(thunks.postQuize.fulfilled, (state, { payload }) => {
+        /* eslint-disable no-param-reassign */
+        state.quizes = [...state.quizes, payload];
       })
       .addCase(actions.changeDificultAction, (state, { payload }) => {
         /* eslint-disable no-param-reassign */
         state.lvlType = payload;
+      })
+      .addCase(actions.addToFavouriteAction, (state, { payload }) => {
+        /* eslint-disable no-param-reassign */
+        state.favouriteList = [...state.favouriteList, payload];
+      })
+      .addCase(actions.rmFavouriteAction, (state, { payload }) => {
+        /* eslint-disable no-param-reassign */
+        state.favouriteList = state.favouriteList.filter((item) => item.id !== payload.id);
       });
   },
 });

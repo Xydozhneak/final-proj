@@ -11,7 +11,7 @@ export default function NarutoRouters() {
         <Routes>
             <Route path='/*' element ={<NotFound />} />
             <Route path='/' element={<ContainerQuize />} />
-            <Route path='/quizes/:quize' element={<NarutoQuizesPage/>} />
+            <Route path='/:quize' element={<NarutoQuizesPage/>} />
             <Route path='/create' element={<CreateQuize/>} />
             <Route path='/favourite' element={ <FavouriteQuizes />} />
         </Routes>
