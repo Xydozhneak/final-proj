@@ -2,7 +2,7 @@ import React, {
   useCallback, useEffect, useMemo, useState,
 } from 'react';
 import Container from '@mui/material/Container';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import QuizeCard from './cards/Cards';
 import Loader from './Loader';
@@ -11,12 +11,23 @@ import actions from '../store/services/quizes/actions';
 
 export default function ContainerQuize() {
   const navigate = useNavigate();
-  const { quizes, filtredCard, filter } = useSelector((state) => state.quizCardReducer);
+  const {
+    quizes, filtredCard, filter, favouriteList,
+  } = useSelector((state) => state.quizCardReducer);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const quizeList = useMemo(() => (filter ? filtredCard : quizes), [quizes, filtredCard, filter]);
+  const location = useLocation();
+
+  const isFavouritePage = location.pathname.includes('/narutoQuizes/favourite');
+
+  const quizeList = useMemo(() => {
+    if (isFavouritePage) {
+      return favouriteList;
+    }
+    return filter ? filtredCard : quizes;
+  }, [quizes, filtredCard, filter, favouriteList, isFavouritePage]);
 
   const fetchQuizeList = useCallback(async () => {
     setLoading(true);

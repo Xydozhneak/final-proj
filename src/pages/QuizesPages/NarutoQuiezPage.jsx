@@ -10,6 +10,7 @@ import Result from '../../components/cards/Result';
 import { narutoQuizesStyle } from './StyleNarutoQuiezes';
 import thunks from '../../store/services/quizes/thunks';
 import actions from '../../store/services/quizes/actions';
+import NotFound from '../../components/NotFound/NotFound';
 
 export default function NarutoQuizesPage() {
   const { quize } = useParams();
@@ -20,7 +21,6 @@ export default function NarutoQuizesPage() {
   const [error, setError] = useState(null);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [timer, setTimer] = useState(lvlType);
-  console.log(quize);
   const fetchQuizeList = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -31,13 +31,12 @@ export default function NarutoQuizesPage() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [dispatch, quize]);
 
   useEffect(() => {
     dispatch(actions.resetScoreAction(0));
     fetchQuizeList();
-    dispatch(actions.setMaximumScoreAction(quizeList.length * 10));
-  }, [fetchQuizeList, quize]);
+  }, [fetchQuizeList, quize, dispatch]);
 
   useEffect(() => {
     const timerInterval = setInterval(() => {
@@ -52,6 +51,7 @@ export default function NarutoQuizesPage() {
   }, [timer, quizCompleted]);
 
   const handleNext = () => {
+    dispatch(actions.setMaximumScoreAction(quizeList.length * 10));
     if (index + 1 >= quizeList.length) {
       setQuizCompleted(true);
     } else {
@@ -71,6 +71,11 @@ export default function NarutoQuizesPage() {
   if (loading) return <Loader />;
   if (error) return <p>{error}</p>;
   const data = quizeList[index];
+  if (!data) {
+    return (
+      <NotFound />
+    );
+  }
   return (
     <Container style={narutoQuizesStyle} maxWidth="lg">
       <div>

@@ -7,6 +7,8 @@ const quizes = {
       throw err;
     }),
   putFavourite: (quizeId, isFavourite) => axios.put(`/quizes/${quizeId}`, { favourite: isFavourite }),
+
+  post: (quizeData) => axios.post('/quizes', quizeData),
 };
 
 const quizesNaruto = {

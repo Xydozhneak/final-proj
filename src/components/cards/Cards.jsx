@@ -17,6 +17,7 @@ export default function QuizeCard({ quiz, handleNavigate }) {
   const quizeDescription = quiz.description.substring(0, 100);
   const checked = quiz.favourite;
   const [isFavourite, setIsFavourite] = useState(checked);
+  const [error, setError] = useState(null);
   const { lvlType } = useSelector((state) => state.quizCardReducer);
   const { title } = quiz;
   const dispatch = useDispatch();
@@ -24,11 +25,15 @@ export default function QuizeCard({ quiz, handleNavigate }) {
   const hadleFavourite = async (e) => {
     const newIsFavourite = e.target.checked;
     setIsFavourite(newIsFavourite);
-    console.log(newIsFavourite);
+    if (newIsFavourite) {
+      dispatch(actions.addToFavouriteAction(quiz));
+    } else {
+      dispatch(actions.rmFavouriteAction(quiz));
+    }
     try {
       await quizes.putFavourite(quiz.id, newIsFavourite);
     } catch {
-      console.error('Error');
+      setError(error);
     }
   };
 
@@ -51,7 +56,7 @@ export default function QuizeCard({ quiz, handleNavigate }) {
       <CardMedia
         sx={{ height: 140 }}
         image={quiz.img}
-        title="green iguana"
+        title="naruto"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
